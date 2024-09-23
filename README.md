@@ -1,5 +1,5 @@
 # FLUVIUS
-<p align="center"><img width="245" src="https://github.com/davidbcaro/adso-project/blob/main/01-Trimestre%201/React-icon.png?raw=true"></p>
+<p align="center"><img width="245" src="Leonardo_Phoenix_Design_a_minim ... ogical_s_1-removebg-preview.png"></p>
 
 ## Objetivo general 🎯
 
