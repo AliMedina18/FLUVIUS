@@ -1,4 +1,4 @@
-# SISTEMA DE DIVULGACIÓN Y GESTIÓN DE LOS  RECURSOS HÍDRICOS NATURALES
+<h1 align="center"> SISTEMA DE DIVULGACIÓN Y GESTIÓN DE LOS  RECURSOS HÍDRICOS NATURALES</h1>
 <p align="center"><img width="500" src="FLUVIUS/Logo.png"></p>
 
 ## Objetivo general 🎯
