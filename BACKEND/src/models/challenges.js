@@ -12,7 +12,7 @@ module.exports = (Sequelize,DataTypes) =>{
             type: DataTypes.STRING(100)
         },
         start_date:{
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             defaultValue: DataTypes.NOW
         },
         end_date:{

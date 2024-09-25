@@ -20,7 +20,7 @@ module.exports = (Sequelize,DataTypes) =>{
 
         },
         state:{
-            type:DataTypes.BOOLEAN
+            type:DataTypes.BOOLEAN,
         },
         ID_roles:{
             type:DataTypes.INTEGER,

@@ -7,38 +7,43 @@ const PORT = process.env.PORT
 const cors = require('cors')
 const IA =require('./routers/IA')
 const user= require('./routers/usersRouters')
-
-
-
-  
-  
-
+const challenges = require('./routers/challengesRouters')
+const body = require('body-parser'); // Corregir nombre
+const login= require('./routers/login')
 
 
 
 class Server {
     constructor () {
         this.app = express();
-        this.router();
-        this.cors=cors()
+      
+        this.app.use(express.json());
+        // this.app.use(body.urlencoded({ extended: true}));
+        // this.cors=cors()
         this.sincronizaDatos()
-        
-       
 
+
+        this.router();
+ 
+    this.app.use(express.urlencoded({ extended: true }));
+   
+    this.app.use(cors({
+      origin: '*',
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      allowedHeaders: 'Content-Type,Authorization'
+    }));
+        
+      
     }
 
-    
-    
-
-
+  
 
     router(){
-
      this.app
-            .use('/',IA)
-            .use('/', user)
-
-     
+            .use('/IA',IA)
+            .use('/users', user)   
+            .use('/challenges', challenges)   
+            .use('/login', login) 
     }
 
 
