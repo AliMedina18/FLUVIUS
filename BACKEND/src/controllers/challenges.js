@@ -8,14 +8,14 @@ const express = require('express');
 
 const createChallenges = async (req=request, res=response) => {
   
-    const{description,start_date,end_date} = req.body
+    const{description,end_date} = req.body
 
     console.log(req.body)
 
    try{   
     const response= await challenges.create({
         description: description,
-        start_date:start_date,
+        start_date:new Date(),
         end_date: end_date
     })
 
@@ -31,7 +31,7 @@ const createChallenges = async (req=request, res=response) => {
 }
 
 
-const updateUsers = async (req=request, res=response) => {
+const updateChallenge = async (req=request, res=response) => {
   
     const{name,email,password,state,ID_roles} = req.body
     const {id} = req.params
@@ -119,5 +119,6 @@ const getChallengeID = async(req=request, res=response)=> {
 module.exports = {
     getChallenges,
     createChallenges,
-    getChallengeID
+    getChallengeID,
+    updateChallenge
 }

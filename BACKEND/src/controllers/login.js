@@ -33,13 +33,9 @@ const login =async (req=require,res=response) => {
 
         console.log(validPassword)
 
-        
-
-        // if(password===User.password){
-            const token= await generatorToken(User.ID_user)
-            return res.status(200).json({message:'holi estoy bien',token})
-           
-        // }
+    
+        const token= await generatorToken(User.ID_user)
+        return res.status(200).json({message:'Holi estoy bien',token})
        
       
     }catch(err){

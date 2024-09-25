@@ -4,7 +4,7 @@ const {request,response} = require('express')
 const {users,results} = require('../models')
 const bcrypt= require('bcryptjs');
 
-const express = require('express');
+
 
 
 const createUsers = async (req=request, res=response) => {
@@ -12,8 +12,6 @@ const createUsers = async (req=request, res=response) => {
     const{name,email,password,state,ID_roles} = req.body
 
     console.log(req.body)
-
-
 
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
@@ -64,7 +62,7 @@ const updateUsers = async (req=request, res=response) => {
         return res.status(201).json(updateUser);
 
     }else{
-        return { status: 404, message: 'Usert not found' };
+        return { status: 404, message: 'User not found' };
     }
    }catch(err){
         res.status(500).json({message:'Error',err})
