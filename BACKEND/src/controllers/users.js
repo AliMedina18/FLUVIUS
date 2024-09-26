@@ -5,54 +5,79 @@ const {users,results} = require('../models')
 const bcrypt= require('bcryptjs');
 
 
-
-
-const createUsers = async (req=request, res=response) => {
+const createUsers = async (req = request, res = response) => {
+    const { name, email, password, state, ID_roles } = req.body;
   
-    const{name,email,password,state,ID_roles} = req.body
-
-    console.log(req.body)
-
+    // Verificación de que todos los campos necesarios están presentes
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+  
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
+  
+    try {
+      // Verificación si el usuario ya existe
+      const existingUser = await users.findOne({ where: { email } });
 
-   try{   
-    const response= await users.create({
+
+      if (existingUser) {
+        return res.status(409).json({ message: 'User already exists' });
+      }
+  
+      // Crear el nuevo usuario
+      const response = await users.create({
         name: name,
-        email:email,
-        password:hashedPassword,
-        state:state,
-        ID_roles:ID_roles
-    })
-
-    if(!response){
-       return res.status(401).json({menssage:'Found users'})
+        email: email,
+        password: hashedPassword,
+        state: state,
+        ID_roles: ID_roles,
+      });
+  
+      // Verificación de que la creación fue exitosa
+      if (!response) {
+        return res.status(400).json({ message: 'Failed to create user' });
+      }
+  
+      // Respuesta exitosa
+      return res.status(201).json({
+        message: 'User created successfully',
+        response: response // Aquí se envían los datos del usuario creado
+      });
+    } catch (err) {
+      console.error(err); // Para depuración
+      res.status(500).json({ message: 'Error', error: err.message });
     }
-       return res.status(200).json({menssage:'Create users',response})
-
-   }catch(err){
-        res.status(500).json({message:'Error',err})
-   }
-    
-}
+  };
+  
 
 
 const updateUsers = async (req=request, res=response) => {
   
     const{name,email,password,state,ID_roles} = req.body
     const {id} = req.params
-    console.log(req.body)
+    
 
+
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+ 
 
     const data = {
         name:name,
         email:email,
-        password:password,
+        password:hashedPassword,
         state:state,
         ID_roles:ID_roles
     }
 
+
+    console.log(data)
+
    try{   
+
+  
      const [updated] = await users.update(data, {
         where: { ID_user:id },
     });

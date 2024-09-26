@@ -31,14 +31,17 @@ En los tips que me vayas a dar por favor incluye cuanto puede reducir mi consumo
 
 let encodedPrompt = encodeURIComponent(prompt);
 
-  axios.post(`${process.env.CHATGPT}/${encodedPrompt}`)
-  .then(response => {
-    res.status(200).json({menssage:response.data})
-    console.log('Respuesta del servidor:', response.data);
-  })
-  .catch(error => {
+  try{
+
+      const response = await axios.post(`${process.env.CHATGPT}/${encodedPrompt}`);
+
+      res.status(200).json({ menssage: response.data });
+
+  }catch(error){
+
     console.error('Error al hacer la solicitud con Axios:', error);
-  });
+    
+  };
 }
 
   module.exports = chatWithGPT
