@@ -5,8 +5,6 @@ const {users,results} = require('../models')
 const bcrypt= require('bcryptjs');
 
 
-
-
 const createUsers = async (req=request, res=response) => {
   
     const{name,email,password,state,ID_roles} = req.body
