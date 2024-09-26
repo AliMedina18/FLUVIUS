@@ -1,12 +1,13 @@
 const express = require("express");
 require('dotenv').config();
 const path= require('path')
-
+const cors = require('cors');
 
 const router = require("./Routers/usuarios_routers");
 
 
 const PORT =process.env.PORT
+
 
 class Server {
     
@@ -15,13 +16,14 @@ class Server {
         
         this.app= express();
         this.Router()
-        
-
-        // Middleware para servir archivos estáticos desde la carpeta 'public'
-        this.app.use(express.static(path.join(__dirname, 'public')));
-   
-
-        
+       
+        const hbs = require('hbs');
+        // Midlewares 
+        hbs.registerPartials(__dirname + '/views/partials', function (err){});
+        this.app.set('view engine', 'hbs');
+        this.app.set("views", __dirname + "/views");
+        this.app.use(cors());
+        this.app.use(express.static("src/public"))
        
             
     }
@@ -29,7 +31,7 @@ class Server {
 
     Router(){
 
-       this.app.use('/usuarios', router)
+       this.app.use('/', router)
     }
 
 
@@ -37,7 +39,7 @@ class Server {
 
     Listen(){
         this.app.listen(PORT,()=>{
-        console.log(`Puerto que escucha en:http://localhost:${PORT}`)
+        console.log(`Puerto que escucha en:https://localhost:${PORT}`)
         })
     }
 

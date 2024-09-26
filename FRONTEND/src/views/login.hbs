@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Autenticación</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Agrega la animación de carga al botón */
+    .loading {
+      pointer-events: none;
+      position: relative;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border: 3px solid white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500 min-h-screen flex items-center justify-center p-6">
+
+  <div class="bg-white shadow-lg rounded-lg w-full max-w-md p-6">
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-bold text-purple-800">Bienvenido</h2>
+      <p class="text-gray-500">Inicia sesión o regístrate para continuar</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="border-b border-gray-200 mb-4">
+      <ul class="flex justify-center space-x-4" id="authTabs">
+        <li>
+          <button class="tab-button text-purple-700 font-semibold py-2 px-4 focus:outline-none" data-target="login">Iniciar Sesión</button>
+        </li>
+        <li>
+          <button class="tab-button text-gray-500 py-2 px-4 focus:outline-none" data-target="register">Registrarse</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contenido de los formularios -->
+    <div class="tab-content">
+      <!-- Formulario de Iniciar Sesión -->
+      <div id="login" class="tab-pane active">
+        <form id="loginForm">
+          <div class="mb-4">
+            <label for="loginEmail" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+            <input type="email" id="loginEmail" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="nombre@ejemplo.com" required>
+          </div>
+          <div class="mb-4">
+            <label for="loginPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input type="password" id="loginPassword" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="********" required>
+          </div>
+          <button type="submit" id="loginButton" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg transition-colors duration-300">Iniciar Sesión</button>
+        </form>
+      </div>
+
+      <!-- Formulario de Registro -->
+      <div id="register" class="tab-pane hidden">
+        <form id="registerForm">
+          <div class="mb-4">
+            <label for="registerEmail" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+            <input type="email" id="registerEmail" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="nombre@ejemplo.com" required>
+          </div>
+          <div class="mb-4">
+            <label for="registerPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input type="password" id="registerPassword" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="********" required>
+          </div>
+          <div class="mb-4">
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+            <input type="password" id="confirmPassword" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="********" required>
+          </div>
+          <button type="submit" id="registerButton" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition-colors duration-300">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts para Tabs y consumo de API -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      // Manejo de tabs
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          tabButtons.forEach(btn => btn.classList.remove('text-purple-700', 'font-semibold'));
+          button.classList.add('text-purple-700', 'font-semibold');
+          tabPanes.forEach(pane => pane.classList.add('hidden'));
+          document.getElementById(button.dataset.target).classList.remove('hidden');
+        });
+      });
+
+      // Manejo de formularios
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const loginButton = document.getElementById('loginButton');
+      const registerButton = document.getElementById('registerButton');
+
+      // Función para consumir la API
+      async function consumirAPI(url, data) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST', // Tipo de petición
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) // Convertimos los datos a formato JSON
+          });
+
+          const result = await response.json();
+          if (!response.ok) {
+            throw new Error(result.message || 'Error en la solicitud');
+          }
+          return result;
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Hubo un error: ' + error.message);
+        }
+      }
+
+      // Simular inicio de sesión consumiendo la API
+      loginForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        loginButton.disabled = true;
+        loginButton.classList.add('loading');
+        loginButton.textContent = '';
+
+        const state=true;
+
+        const data = { email, password}; // Datos del formulario
+
+        // Reemplaza "https://api-ejemplo.com/login" con tu URL de la API
+        const resultado = await consumirAPI('http://localhost:3001/login', data);
+
+        loginButton.disabled = false;
+        loginButton.classList.remove('loading');
+        loginButton.textContent = 'Iniciar Sesión';
+
+        if (resultado) {
+          alert('Inicio de sesión exitoso');
+          // Aquí puedes redirigir al usuario o mostrar algún mensaje
+        }
+      });
+
+      // Simular registro consumiendo la API
+      registerForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+          alert('Las contraseñas no coinciden');
+          return;
+        }
+
+        registerButton.disabled = true;
+        registerButton.classList.add('loading');
+        registerButton.textContent = '';
+
+
+        const state = true;
+
+        const data = { email, password,state }; // Datos del formulario
+
+        // Reemplaza "https://api-ejemplo.com/register" con tu URL de la API
+        const resultado = await consumirAPI('http://localhos/3001/users', data);
+
+        registerButton.disabled = false;
+        registerButton.classList.remove('loading');
+        registerButton.textContent = 'Registrarse';
+
+        if (resultado) {
+          alert('Registro exitoso');
+          // Aquí puedes redirigir al usuario o mostrar algún mensaje
+        }
+      });
+    });
+  </script>
+</body>
+</html>

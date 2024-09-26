@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const controllers = require('../controllers/users');
+
 const router=Router();
 
 router
@@ -7,5 +8,6 @@ router
     .get('/:id', controllers.getUsersID)
     .post('/', controllers.createUsers)
     .patch('/:id', controllers.updateUsers)
+    
 
 module.exports=router
