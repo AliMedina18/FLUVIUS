@@ -19,7 +19,7 @@ class Server {
       
         this.app.use(express.json());
         // this.app.use(body.urlencoded({ extended: true}));
-        // this.cors=cors()
+        this.app.use(cors())
         this.sincronizaDatos()
 
 
@@ -27,14 +27,16 @@ class Server {
  
     this.app.use(express.urlencoded({ extended: true }));
    
-    this.app.use(cors({
-      origin: '*',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      allowedHeaders: 'Content-Type,Authorization'
-    }));
+    // this.app.use(cors({
+    //   origin: '*',
+    //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    //   allowedHeaders: 'Content-Type,Authorization'
+    // }));
         
       
     }
+
+    t
 
   
 
@@ -62,7 +64,7 @@ class Server {
 
     Listen(){
         this.app.listen(PORT,()=>{
-            console.log(`La API escucha en el puerto:http://localhost:${PORT}`)
+            console.log(`La API escucha en el puerto:https://localhost:${PORT}`)
         })
     }  
 }

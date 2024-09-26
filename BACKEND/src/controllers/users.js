@@ -73,8 +73,6 @@ const updateUsers = async (req=request, res=response) => {
     }
 
 
-    console.log(data)
-
    try{   
 
   
@@ -83,7 +81,8 @@ const updateUsers = async (req=request, res=response) => {
     });
 
     if (updated) {
-        const updateUser = await users.findByPk(id);
+        // const updateUser = await users.findByPk(id);
+
         return res.status(201).json(updateUser);
 
     }else{
