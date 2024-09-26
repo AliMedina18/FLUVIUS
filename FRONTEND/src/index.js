@@ -32,6 +32,9 @@ class Server {
     Router(){
 
        this.app.use('/', router)
+       this.app.use('/home', (req, res) => {
+        res.render('Home')});
+       
     }
 
 

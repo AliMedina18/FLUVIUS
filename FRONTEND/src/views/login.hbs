@@ -163,7 +163,8 @@
         loginButton.textContent = 'Iniciar Sesión';
 
         if (resultado) {
-          alert('Inicio de sesión exitoso');
+          //alert('Inicio de sesión exitoso');
+           window.location.href = '/form';
           // Aquí puedes redirigir al usuario o mostrar algún mensaje
         }
       });
@@ -179,6 +180,7 @@
 
         if (password !== confirmPassword) {
           alert('Las contraseñas no coinciden');
+          
           return;
         }
 
@@ -196,7 +198,8 @@
         registerButton.textContent = 'Registrarse';
 
         if (resultado) {
-          alert('Registro exitoso');
+          //alert('Registro exitoso');
+            window.location.href = '/form';
         }
       });
     });

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="Css/Index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    background: #f0f4f8;
+    transition: margin-left 0.3s ease;
+    position: relative; /* Asegura que el fondo se coloque correctamente */
+}
+
+.area {
+    background: #409bf1ed;
+    background: -webkit-linear-gradient(to left, #82f9e5, #16b4e4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Envía el fondo detrás del contenido */
+    overflow: hidden;
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+/* Barra de navegación */
+.sidebar {
+    height: 100vh;
+    width: 300px;
+    background: #fff;
+    color: #4194f3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #2557fa, #1f80e7);;
+    color: #fff;
+    border-bottom: 1px solid #1f4179;
+    position: relative;
+}
+
+.sidebar-header img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 4px solid #fff;
+}
+
+.sidebar-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.sidebar-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.sidebar-header button:hover {
+    color: #ddd;
+    transform: scale(1.1);
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #305c9e;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-size: 1.2em;
+}
+
+.sidebar-menu a:hover {
+    background-color: #e0eafc;
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu i {
+    margin-right: 15px;
+    font-size: 1.4em;
+    transition: color 0.3s;
+}
+
+.sidebar-menu a:hover i {
+    color: #1d3e73;
+}
+
+/* Botón para mostrar/ocultar la barra de navegación */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(90deg, #007BFF, #0056b3);
+    border: none;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8em;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.toggle-btn:hover {
+    background-color: #1d3e73;
+    transform: scale(1.1);
+}
+
+.content {
+    margin-left: 300px; /* Ajusta según el ancho de la barra lateral */
+    padding: 20px;
+    width: calc(100% - 300px); /* Ajusta el ancho del contenido */
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.hidden + .content {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Estilos del perfil de usuario */
+.profile-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 30px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #305c9e;
+    text-align: center;
+}
+
+.profile-container .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-container .profile-header img {
+    border-radius: 50%;
+    width: 120px; /* Aumentado */
+    height: 120px; /* Aumentado */
+    object-fit: cover;
+    border: 4px solid #305c9e;
+}
+
+.profile-container .profile-info {
+    margin-left: 20px;
+}
+
+.profile-container .profile-info h3 {
+    margin-bottom: 10px;
+    color: #305c9e;
+}
+
+.profile-container .profile-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.profile-container .profile-details {
+    margin-top: 20px;
+}
+
+.profile-container .form-group {
+    margin-bottom: 15px;
+}
+
+.profile-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #305c9e;
+}
+
+.profile-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+}
+
+.profile-container .form-group button {
+    background: linear-gradient(90deg, #007BFF, #0056b3);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.profile-container .form-group button:hover {
+    background-color: #1d3e73;
+}
+
+    </style>
+</head>
+<body>
+    <div class="area"></div>
+    <div class="circles">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="Img/Logo.png" width="300%" height="300%">
+            <button onclick="toggleSidebar()">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="#usuarios">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
+            <a href="#Huella">
+                <i class="fas fa-database"></i>
+                Water footprint
+            </a>
+            <a href="#cerrar-sesion">
+                <i class="fas fa-sign-out-alt"></i>
+                Close Session
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="profile-container">
+            
+            <h2><i class="fas fa-users"></i>User Profile</h2>
+            <div class="profile-header">
+                <div class="profile-info">
+                </div>
+            </div>
+            <div class="profile-details">
+                <div class="form-group">
+                    <label for="nombre">Username</label>
+                    <input type="text" id="nombre" value="Nombre del Usuario" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Email</label>
+                    <input type="email" id="correo" value="usuario@ejemplo.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="estado">State:</label>
+                    <input type="text" id="estado" value="Activo" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="fecha-registro">Registration Date:</label>
+                    <input type="text" id="fecha-registro" value="2024-01-01 12:00:00" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('hidden');
+            document.querySelector('.content').classList.toggle('hidden');
+        }
+
+        function toggleNotifications() {
+            const panel = document.getElementById('notificationPanel');
+            panel.classList.toggle('show');
+        }
+
+        function editProfile() {
+            alert('Funcionalidad de editar perfil');
+        }
+    </script>
+</body>
+</html>

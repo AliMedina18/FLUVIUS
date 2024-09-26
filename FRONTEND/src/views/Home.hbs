@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUVIUS</title>
+    <link rel="stylesheet" href="Css/Home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+
+}
+.Grifo2{
+  position: fixed;
+  left: 1px; 
+  top: 0; 
+  z-index: 200; 
+}
+
+.Grifo2 img {
+  width: 157px; 
+  height: auto;
+}
+
+.Grifo {
+  position: fixed; /* Fija el elemento en la parte superior de la ventana */
+  right: 0px; /* Ajusta la distancia desde el lado izquierdo */
+  top: 0; /* Coloca el elemento en la parte superior */
+  z-index: 200; /* Asegúrate de que esté encima de otros elementos */
+}
+
+.Grifo img {
+  width: 157px; /* Ajusta el tamaño de la imagen según lo desees */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+
+/* Estilo para la barra de navegación centrada y moderna */
+.Navegacion {
+  position: fixed;
+  top: 18px;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 65px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+}
+
+.Navegacion a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 40px 20px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Navegacion a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+  border-radius: 5px;
+}
+
+.Navegacion i {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.Navegacion .logo {
+  font-weight: bold;
+  font-size: 28px;
+  color: #007bff;
+  margin-right: auto;
+}
+
+.Navegacion .links {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .Navegacion {
+      width: 100%; 
+      padding: 0 10px; 
+      height: auto;
+      margin-top: 0;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .Navegacion .logo {
+      margin-right: 0; 
+      margin-bottom: 10px; 
+  }
+
+  .Navegacion .links {
+      flex-direction: column; 
+      align-items: flex-start; 
+      width: 100%; 
+  }
+
+  .Navegacion a {
+      margin: 5px 0; 
+      font-size: 14px;
+  }
+
+  .Navegacion i {
+      margin-right: 10px; 
+  }
+}
+
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+/* Estilo para el encabezado con imagen de fondo */
+.Encabezado-img {
+  background-image: url(''); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Playfair Display', serif; /* Nueva tipografía seleccionada */
+}
+
+/* Contenido del encabezado */
+.Encabezado-img .header-content {
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Estilo del área de fondo */
+.area {
+    background: #409bf1ed;
+    background: -webkit-linear-gradient(to left, #82f9e5, #16b4e4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Estilo de los círculos animados */
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+/* Animación mejorada de desvanecimiento, deslizamiento hacia arriba y escalado */
+@keyframes fadeInUpScale {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(10px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación de hover */
+@keyframes fadeInUpScaleHover {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Estilo del encabezado (h1) */
+.Encabezado-img h1 {
+  font-size: 3rem; /* Tamaño de fuente más grande para el encabezado */
+  margin-bottom: 20px; /* Ajustar el margen inferior */
+  animation: fadeInUpScale 1.5s ease-out forwards; /* Animación aplicada */
+}
+
+/* Estilo del párrafo (p) */
+.Encabezado-img p {
+  font-size: 1.2rem; /* Tamaño de fuente más pequeño para el párrafo */
+  margin-bottom: 20px;
+  line-height: 1.5;
+  animation: fadeInUpScale 1.5s 0.5s ease-out forwards; /* Animación aplicada con retraso */
+}
+
+/* Animación de hover aplicada al encabezado */
+.Encabezado-img:hover h1,
+.Encabezado-img:hover p {
+  animation: fadeInUpScaleHover 1.5s ease-out forwards; /* Animación aplicada en hover */
+}
+
+
+/* Estilo para la sección de Carreras de Estudio */
+.Carreras {
+  padding: 100px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s, transform 1s;
+  margin-top: 0px; /* Espacio adicional antes de la siguiente sección */
+}
+
+.Carreras.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Carreras h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #0c306b;
+  animation: fadeInUp 1s forwards;
+}
+
+.Carreras p {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  color: #12131f;
+  animation: fadeInUp 1s 0.5s forwards;
+}
+
+@keyframes scaleIn {
+  from {
+      transform: scale(0.9);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+.Carreras .carrera-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.Carreras .carrera {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 1s forwards;
+}
+
+.Carreras .carrera img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.Carreras .carrera:hover img {
+  transform: scale(1.1);
+}
+
+.Carreras .carrera .text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background:  linear-gradient(90deg, #007BFF, #0056b3);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .Carreras .carrera {
+      width: 180px;
+      height: 180px;
+  }
+
+  .Carreras .carrera-container {
+      gap: 20px;
+  }
+}
+
+/* Estilo para la sección de Evaluaciones Diagnósticas */
+.Evaluaciones {
+  padding: 150px 20px;
+  background-color: #bad9f8;
+  text-align: center;
+  position: relative;
+  transform: translateY(50px);
+  transition: opacity 1s, transform 1s;
+}
+
+.Evaluaciones.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Evaluaciones h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #060816;
+}
+
+.Evaluaciones p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #1d1a29;
+}
+
+@keyframes scaleIn {
+  from {
+      transform: scale(0.9);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+.Evaluaciones .tarjeta-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.Evaluaciones .tarjeta {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.Evaluaciones .tarjeta:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.Evaluaciones .tarjeta img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.Evaluaciones .tarjeta .titulo {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #0c0b19;
+}
+
+.Evaluaciones .tarjeta .descripcion {
+  font-size: 1rem;
+  color: #171827;
+}
+
+.Evaluaciones .tarjeta .btn-info {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background:linear-gradient(90deg, #0056b3, #004494);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Evaluaciones .tarjeta .btn-info:hover {
+  background-color: #004d40;
+}
+
+.Evaluaciones .tarjeta .info {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: 2px solid #00796b;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #004d40;
+  text-align: left;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateY(20px);
+}
+
+.Evaluaciones .tarjeta.show-info .info {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Evaluaciones .tarjeta .info img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .Evaluaciones .tarjeta-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+  }
+
+  .Evaluaciones .tarjeta {
+      width: 90%;
+      max-width: 400px;
+  }
+}
+
+/* Estilo para la sección de Biblioteca Virtual */
+.Biblioteca {
+  padding: 100px 20px;
+  background-color: #ffffff;
+  text-align: center;
+  position: relative;
+  transform: translateY(50px);
+  transition: opacity 1s, transform 1s;
+}
+
+.Biblioteca.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Biblioteca h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #d81515;
+}
+
+.Biblioteca p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #1d1a29;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.Biblioteca .mosaico-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: center; /* Alinea los elementos del grid verticalmente */
+}
+
+.Biblioteca .mosaico-item {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.Biblioteca .mosaico-item img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.Biblioteca .mosaico-item:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .Biblioteca .mosaico-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}
+
+/* Estilo para el footer */
+.footer {
+  background: #409bf1ed;
+  background: -webkit-linear-gradient(to left, #82f9e5, #16b4e4);
+  color: #f0f0f0;
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer-content {
+  max-width: 1200px; /* Ajusta según sea necesario */
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .contact-info {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.footer .contact-info a {
+  color: #f0f0f0;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+.footer .contact-info a:hover {
+  color: #007bff;
+}
+
+.footer .separator {
+  margin: 0 20px;
+  font-weight: bold;
+}
+
+.footer .divider {
+  margin: 15px 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 80%;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 17px;
+}
+
+.footer .social-icons a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.footer .social-icons a:hover {
+  transform: scale(1.1);
+}
+
+.footer .social-icons i {
+  font-size: 22px; /* Aumenté un poco el tamaño de los íconos */
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 15px;
+  }
+
+  .footer .contact-info {
+    font-size: 14px;
+  }
+
+  .footer .social-icons i {
+    font-size: 20px;
+  }
+}
+    </style>
+</head>
+<body>
+
+  <div class="Grifo2">
+        <img src="Img/Grifo2.png" alt="Imagen Izquierda">
+    </div>
+
+    <div class="Grifo">
+        <img src="Img/Grifo.png" alt="Imagen derecha">
+    </div>
+
+    <div class="Navegacion">
+        <div class="logo">FLUVIUS</div>
+        <!-- Contenedor de enlaces -->
+        <div class="links">
+            <a href="#carreras"><i class="fas fa-water"></i> WATER RIGHTS</a>
+            <a href="#evaluaciones"><i class="fas fa-globe"></i>WATER IN THE WORLD</a>
+            <a href="#biblioteca"><i class="fas fa-exclamation-triangle"></i>CRISIS IN BOGOTA</a>
+            <a href="#home"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
+        </div>
+    </div>
+ 
+
+
+    <header class="Encabezado-img" id="home">
+        <div class="area"></div>
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="header-content">
+            <h1>Calculate Your Water Footprint</h1>
+            <p>Drop by drop, water is running out: let's take care of the planet, the world is getting better</p>
+        </div>
+    </header>
+    
+
+    <!-- WATER RIGHTS -->
+    <section class="Carreras" id="carreras">
+        <h2><i class="fas fa-water"></i>
+            WATER RIGHTS</h2>
+        <p>Water rights guarantee equitable access to and use of drinking water, regulate its ownership and distribution, and protect ecosystems. They include domestic, agricultural and industrial use, under public management or concessions. They also promote water justice and the sustainable use of the resource, avoiding conflicts and protecting the environment.</p>
+        <div class="carrera-container">
+            <div class="carrera">
+                <img src="Img/Img1.jpg">
+                <div class="text">Water use rights</div>
+            </div>
+            <div class="carrera">
+                <img src="Img/Img2.jpg">
+                <div class="text">Human right to water</div>
+            </div>
+            <div class="carrera">
+                <img src="Img/Img3.jpg">
+                <div class="text">Water property rights</div>
+            </div>
+            <div class="carrera">
+                <img src="Img/Img4.jpg">
+                <div class="text">Environmental water rights</div>
+            </div>
+            <div class="carrera">
+                <img src="Img/Img5.jpg">
+                <div class="text">Water governance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WATER IN THE WORLD -->
+    <section class="Evaluaciones" id="evaluaciones">
+        <h2><i class="fas fa-globe"></i>
+            WATER IN THE WORLD</h2>
+        <p>Water is essential for life, covering 71% of the Earth's surface. However, only 2.5% is freshwater, mainly found in glaciers and underground aquifers. Access to clean water is vital for health and ecosystems, making sustainable management crucial as populations grow and climate change impacts availability.
+        </p>
+        <div class="tarjeta-container">
+            <div class="tarjeta">
+                <div class="titulo">Freshwater distribution</div>
+                <div class="descripcion">Of that 2.5% of fresh water, almost 70% is frozen in glaciers and ice caps.
+                     Alrededor del 30% se encuentra en acuíferos subterráneos.</div>
+                <button class="btn-info">Ver Estadísticas</button>
+                <div class="info">
+                    <img src="Img/Img6.jpg" alt="Estadísticas de Evaluación de Inglés">
+                </div>
+            </div>
+            <div class="tarjeta">
+                <div class="titulo">Freshwater distribution</div>
+                <div class="descripcion">Of that 2.5% of fresh water, almost 70% is frozen in glaciers and ice caps.
+                     Alrededor del 30% se encuentra en acuíferos subterráneos.</div>
+                <button class="btn-info">Ver Estadísticas</button>
+                <div class="info">
+                    <img src="Img/Img6.jpg" alt="Estadísticas de Evaluación de Inglés">
+                </div>
+            </div>
+            <div class="tarjeta">
+                <div class="titulo">Freshwater distribution</div>
+                <div class="descripcion">Of that 2.5% of fresh water, almost 70% is frozen in glaciers and ice caps.
+                     Alrededor del 30% se encuentra en acuíferos subterráneos.</div>
+                <button class="btn-info">Ver Estadísticas</button>
+                <div class="info">
+                    <img src="Img/Img6.jpg" alt="Estadísticas de Evaluación de Inglés">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Sección de Biblioteca Virtual -->
+<section class="Biblioteca" id="biblioteca">
+    <h2><i class="fas fa-exclamation-triangle"></i>
+        CRISIS IN BOGOTA</h2>
+    <p>Bogotá reintroducirá el racionamiento de agua a partir del 29 de septiembre en respuesta a la crisis hídrica. La ciudad retomará un esquema de cortes cada nueve días, similar al aplicado entre abril y junio, con el objetivo de reducir el descenso en el embalse de Chuza, que abastece a la capital. Este embalse, el mayor del Sistema Chingaza, proporciona el 70% del agua utilizada por Bogotá y 11 municipios cercanos, según anunció el alcalde Carlos Fernando Galán.</p>
+    <div class="mosaico-container">
+        <div class="mosaico-item">
+            <img src="Img/Bogota1.png" alt="Recurso 1">
+        </div>
+        <div class="mosaico-item">
+            <img src="Img/Bogota2.jpg" alt="Recurso 2">
+        </div>
+        <div class="mosaico-item">
+            <img src="Img/Bogota3.jpg" alt="Recurso 3">
+        </div>
+        <div class="mosaico-item">
+            <img src="Img/Bogota4.jpg" alt="Recurso 4">
+        </div>
+    </div>
+</section>
+
+
+    <script>
+        // Mostrar secciones cuando estén en vista
+        function showSectionInView() {
+            const sections = document.querySelectorAll('.Carreras, .Evaluaciones,.Biblioteca');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        }
+
+        showSectionInView();
+
+        // Mostrar información de la tarjeta al hacer clic
+        document.querySelectorAll('.Evaluaciones .tarjeta').forEach(tarjeta => {
+            tarjeta.addEventListener('click', () => {
+                tarjeta.classList.toggle('show-info');
+            });
+        });
+    </script>
+     <footer class="footer">
+        <div class="footer-content">
+          <div class="contact-info">
+            <a href="mailto:contacto@example.com">EpicSoft18@gmail.com</a>
+            <span class="separator">|</span>
+            <a href="tel:+123456789">+1 234 567 89</a>
+          </div>
+          <div class="divider"></div>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </footer>
+      
+        
+</body>
+</html>
