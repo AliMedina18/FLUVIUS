@@ -27,11 +27,11 @@ class Server {
  
     this.app.use(express.urlencoded({ extended: true }));
    
-    // this.app.use(cors({
-    //   origin: '*',
-    //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    //   allowedHeaders: 'Content-Type,Authorization'
-    // }));
+    this.app.use(cors({
+      origin: 'http://localhost:3300',
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      allowedHeaders: ['Content-Type', 'Authorization']
+    }));
         
       
     }

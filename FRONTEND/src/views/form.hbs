@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Footprint Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg">
+      <div class="p-4">
+        <h2 class="text-2xl font-semibold">Water Footprint Calculator</h2>
+        <p class="text-gray-600">Calculate your water usage based on daily habits</p>
+      </div>
+
+      <!-- Step 1: Housing -->
+      <div id="step1" class="p-4">
+        <h3 class="text-lg font-semibold mb-4">Housing</h3>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <label for="showerMinutes" class="block text-sm font-medium">Minutes showering per day</label>
+            <input id="showerMinutes" name="showerMinutes" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="faucetMinutes" class="block text-sm font-medium">Minutes the kitchen faucet is running daily</label>
+            <input id="faucetMinutes" name="faucetMinutes" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="dishWashing" class="block text-sm font-medium">Times washing dishes by hand per week</label>
+            <input id="dishWashing" name="dishWashing" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="laundry" class="block text-sm font-medium">Times doing laundry per week</label>
+            <input id="laundry" name="laundry" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Car Usage -->
+      <div id="step2" class="p-4 hidden">
+        <h3 class="text-lg font-semibold mb-4">Car Usage</h3>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <label for="ownCar" class="block text-sm font-medium">Do you own a car?</label>
+            <select id="ownCar" class="block w-full p-2 border border-gray-300 rounded-md">
+              <option value="" disabled selected>Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label for="carWash" class="block text-sm font-medium">Times washing car per month</label>
+            <input id="carWash" name="carWash" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Dietary Habits -->
+      <div id="step3" class="p-4 hidden">
+        <h3 class="text-lg font-semibold mb-4">Dietary Habits</h3>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <label for="porkConsumption" class="block text-sm font-medium">Kilograms of pork consumed per month</label>
+            <input id="porkConsumption" name="porkConsumption" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="chickenConsumption" class="block text-sm font-medium">Kilograms of chicken consumed per month</label>
+            <input id="chickenConsumption" name="chickenConsumption" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="beefConsumption" class="block text-sm font-medium">Kilograms of beef consumed per month</label>
+            <input id="beefConsumption" name="beefConsumption" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Beverage Consumption -->
+      <div id="step4" class="p-4 hidden">
+        <h3 class="text-lg font-semibold mb-4">Beverage Consumption</h3>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <label for="milkConsumption" class="block text-sm font-medium">Liters of milk consumed per month</label>
+            <input id="milkConsumption" name="milkConsumption" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div class="space-y-2">
+            <label for="sodaJuiceConsumption" class="block text-sm font-medium">Liters of sodas and juices consumed per month</label>
+            <input id="sodaJuiceConsumption" name="sodaJuiceConsumption" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Additional Information -->
+    <div id="step5" class="p-4 hidden">
+  <h3 class="text-lg font-semibold mb-4">Additional Information</h3>
+  <div class="space-y-4">
+    <div class="space-y-2">
+      <label for="familyMembers" class="block text-sm font-medium">Number of family members</label>
+      <input id="familyMembers" name="familyMembers" type="number" placeholder="1" class="block w-full p-2 border border-gray-300 rounded-md" />
+    </div>
+    <div class="space-y-2">
+      <label for="cubicMeters" class="block text-sm font-medium">Cubic meters of water consumed</label>
+      <input id="cubicMeters" name="cubicMeters" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+    </div>
+    <div class="space-y-2">
+      <label for="billAmount" class="block text-sm font-medium">Water bill amount (COP)</label>
+      <input id="billAmount" name="billAmount" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+    </div>
+    <div class="space-y-2">
+      <label for="rationingDays" class="block text-sm font-medium">Days of water rationing</label>
+      <input id="rationingDays" name="rationingDays" type="number" placeholder="0" class="block w-full p-2 border border-gray-300 rounded-md" />
+    </div>
+  </div>
+</div>
+
+      <!-- Navigation and Calculate Button -->
+      <div class="p-4 flex justify-between">
+        <button id="prevButton" class="bg-gray-500 text-white px-4 py-2 rounded-md" onclick="prevStep()">Previous</button>
+        <button id="nextButton" class="bg-black text-white px-4 py-2 rounded-md" onclick="nextStep()">Next</button>
+      </div>
+
+      <div class="p-4 text-center">
+        <button id="calculateButton" class="bg-green-600 text-white px-4 py-2 rounded-md" onclick="calculateWaterFootprint()">Calculate Water Footprint</button>
+      </div>
+
+      <div id="resultado" class="p-4 text-lg font-semibold text-green-600">
+
+        {{!-- <button onclick="ia()">IA</button> --}}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+
+    function showStep(step) {
+      document.querySelectorAll('div[id^="step"]').forEach(div => div.classList.add('hidden'));
+      document.getElementById(`step${step}`).classList.remove('hidden');
+    }
+
+    function nextStep() {
+      if (currentStep < 5) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+     
+    function calculateWaterFootprint() {
+  // Capturar las variables individuales 
+   let familyMembers = parseFloat(document.getElementById('familyMembers').value) || 1; 
+  let showerMinutes = parseFloat(document.getElementById('showerMinutes').value) || 0;
+  let faucetMinutes = parseFloat(document.getElementById('faucetMinutes').value) || 0;
+  let dishWashing = parseFloat(document.getElementById('dishWashing').value) || 0;
+  let laundry = parseFloat(document.getElementById('laundry').value) || 0;
+  let ownCar = document.getElementById('ownCar').value;
+  let carWash = parseFloat(document.getElementById('carWash').value) || 0;
+  let porkConsumption = parseFloat(document.getElementById('porkConsumption').value) || 0;
+  let chickenConsumption = parseFloat(document.getElementById('chickenConsumption').value) || 0;
+  let beefConsumption = parseFloat(document.getElementById('beefConsumption').value) || 0;
+  let milkConsumption = parseFloat(document.getElementById('milkConsumption').value) || 0;
+  let sodaJuiceConsumption = parseFloat(document.getElementById('sodaJuiceConsumption').value) || 0;
+  let cubicMeters = parseFloat(document.getElementById('cubicMeters').value) || 0;
+  let billAmount = parseFloat(document.getElementById('billAmount').value) || 0;
+  let rationingDays = parseFloat(document.getElementById('rationingDays').value) || 0;
+
+  // Calcular la huella hídrica (valores ficticios para la demostración)
+  let total = 0;
+
+  // Cálculos individuales
+  let shower = showerMinutes * 10;           // 10 litros por minuto de ducha
+  let faucet = faucetMinutes * 15;           // 15 litros por minuto de grifo
+  let wash = dishWashing * 8;                // 8 litros por lavado de platos
+  let washingMachine = laundry * 60;         // 60 litros por lavado de ropa
+  let carWaterUsage = (ownCar === "Yes" ? carWash * 200 : 0); // 200 litros por lavado de coche
+  let porkWaterUsage = porkConsumption * 500;    // 500 litros por kg de cerdo
+  let chickenWaterUsage = chickenConsumption * 390; // 390 litros por kg de pollo
+  let beefWaterUsage = beefConsumption * 1500;    // 1500 litros por kg de carne de res
+  let milkWaterUsage = milkConsumption * 1000;    // 1000 litros por litro de leche
+  let sodaWaterUsage = sodaJuiceConsumption * 600; // 600 litros por litro de refresco
+
+  // Calcular el total de la huella hídrica global
+  total += shower;
+  total += faucet;
+  total += wash;
+  total += washingMachine;
+  total += carWaterUsage;
+  total += porkWaterUsage;
+  total += chickenWaterUsage;
+  total += beefWaterUsage;
+  total += milkWaterUsage;
+  total += sodaWaterUsage;
+
+  // Cálculo adicional
+  const costPerCubicMeter = cubicMeters ? billAmount / cubicMeters : 0;
+  const waterUsagePerRationingDay = rationingDays ? (total / rationingDays) : 0;
+
+  // Calcular huella hídrica promedio por miembro de la familia
+  const averageWaterFootprint = familyMembers > 0 ? total / familyMembers : 0;
+
+  // Llamar a la función ia y pasar todos los datos necesarios
+  ia(shower, faucet, wash, washingMachine, carWaterUsage, porkWaterUsage, chickenWaterUsage, beefWaterUsage, milkWaterUsage, sodaWaterUsage, costPerCubicMeter, waterUsagePerRationingDay);
+
+  // Mostrar el resultado
+  document.getElementById('resultado').innerText = `
+     La huella hídrica total es: ${total.toFixed(2)} litros
+    La huella hídrica promedio por miembro de la familia es: ${averageWaterFootprint.toFixed(2)} litros
+    Costo por metro cúbico: ${costPerCubicMeter.toFixed(2)} COP
+    Consumo promedio durante los días de racionamiento: ${waterUsagePerRationingDay.toFixed(2)} litros por día
+  `;
+}
+
+// Función para consumir la API
+async function consumirAPI(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: 'POST', // Tipo de petición
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data) // Convertimos los datos a formato JSON
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message || 'Error en la solicitud');
+    }
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Hubo un error: ' + error.message);
+  }
+}
+
+// Función ia para manejar los datos
+async function ia(shower, faucet, wash, washingMachine, carWaterUsage, porkWaterUsage, chickenWaterUsage, beefWaterUsage, milkWaterUsage, sodaWaterUsage, costPerCubicMeter, waterUsagePerRationingDay) {
+  // Aquí puedes hacer lo que necesites con los datos, como enviarlos a una API o procesarlos
+  //console.log(shower, faucet, wash, washingMachine, carWaterUsage, porkWaterUsage, chickenWaterUsage, beefWaterUsage, milkWaterUsage, sodaWaterUsage, costPerCubicMeter, waterUsagePerRationingDay); --}}
+
+
+   const data={shower, faucet, wash, washingMachine, carWaterUsage, porkWaterUsage, chickenWaterUsage, beefWaterUsage, milkWaterUsage, sodaWaterUsage, costPerCubicMeter, waterUsagePerRationingDay};
+    const resultado = await consumirAPI('http://localhost:3001/IA', data);
+    if (resultado) {
+         // alert('Lo recibi');
+          console.log(resultado);
+          // Aquí puedes redirigir al usuario o mostrar algún mensaje
+        }
+
+
+
+}
+
+
+
+
+
+
+    
+
+    // Mostrar el primer paso al cargar
+    showStep(currentStep);
+  </script>
+</body>
+</html>

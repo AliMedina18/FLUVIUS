@@ -22,7 +22,7 @@ class Server {
         hbs.registerPartials(__dirname + '/views/partials', function (err){});
         this.app.set('view engine', 'hbs');
         this.app.set("views", __dirname + "/views");
-        this.app.use(cors());
+        // this.app.use(cors());
         this.app.use(express.static("src/public"))
        
             
@@ -39,7 +39,7 @@ class Server {
 
     Listen(){
         this.app.listen(PORT,()=>{
-        console.log(`Puerto que escucha en:https://localhost:${PORT}`)
+        console.log(`Puerto que escucha en:http://localhost:${PORT}`)
         })
     }
 

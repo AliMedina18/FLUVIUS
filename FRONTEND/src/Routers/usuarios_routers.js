@@ -12,4 +12,10 @@ router.get('/', (req, res=response)=>{
 })
 
 
+router.get('/form', (req, res=response)=>{ 
+    res.render('form', { title: 'Mi Título' });
+
+})
+
+
 module.exports=router

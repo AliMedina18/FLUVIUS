@@ -31,6 +31,7 @@
       0% { transform: translate(-50%, -50%) rotate(0deg); }
       100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
+    
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500 min-h-screen flex items-center justify-center p-6">
@@ -73,15 +74,19 @@
       <!-- Formulario de Registro -->
       <div id="register" class="tab-pane hidden">
         <form id="registerForm">
-          <div class="mb-4">
+          <div class="mb-3">
+            <label for="registerName" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input type="text" id="registerName" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="Alicia Medina" required>
+          </div>
+          <div class="mb-3">
             <label for="registerEmail" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
             <input type="email" id="registerEmail" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="nombre@ejemplo.com" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-3">
             <label for="registerPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
             <input type="password" id="registerPassword" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="********" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-3">
             <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
             <input type="password" id="confirmPassword" class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-purple-500 focus:border-purple-500" placeholder="********" required>
           </div>
@@ -150,7 +155,7 @@
 
         const data = { email, password}; // Datos del formulario
 
-        // Reemplaza "https://api-ejemplo.com/login" con tu URL de la API
+  
         const resultado = await consumirAPI('http://localhost:3001/login', data);
 
         loginButton.disabled = false;
@@ -167,6 +172,7 @@
       registerForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
+        const name = document.getElementById('registerName').value;
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
@@ -180,13 +186,10 @@
         registerButton.classList.add('loading');
         registerButton.textContent = '';
 
+        const data = {name,email,password}; // Datos del formulario
 
-        const state = true;
-
-        const data = { email, password,state }; // Datos del formulario
-
-        // Reemplaza "https://api-ejemplo.com/register" con tu URL de la API
-        const resultado = await consumirAPI('http://localhos/3001/users', data);
+        console.log(data);
+        const resultado = await consumirAPI('http://localhost:3001/users', data);
 
         registerButton.disabled = false;
         registerButton.classList.remove('loading');
@@ -194,7 +197,6 @@
 
         if (resultado) {
           alert('Registro exitoso');
-          // Aquí puedes redirigir al usuario o mostrar algún mensaje
         }
       });
     });

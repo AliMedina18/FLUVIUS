@@ -6,7 +6,7 @@ const bcrypt= require('bcryptjs');
 
 
 const createUsers = async (req = request, res = response) => {
-    const { name, email, password, state, ID_roles } = req.body;
+    const { name, email, password } = req.body;
   
     // Verificación de que todos los campos necesarios están presentes
     if (!name || !email || !password) {
@@ -30,8 +30,8 @@ const createUsers = async (req = request, res = response) => {
         name: name,
         email: email,
         password: hashedPassword,
-        state: state,
-        ID_roles: ID_roles,
+        state: true,
+        ID_roles:2,
       });
   
       // Verificación de que la creación fue exitosa
@@ -81,7 +81,7 @@ const updateUsers = async (req=request, res=response) => {
     });
 
     if (updated) {
-        // const updateUser = await users.findByPk(id);
+         const updateUser = await users.findByPk(id);
 
         return res.status(201).json(updateUser);
 
